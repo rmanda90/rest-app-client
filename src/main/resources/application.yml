@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: rest-app-client #service name, this will appear in eureka server homepage
+  profiles:
+    active: dev,local
+  config:
+    import: optional:configserver:http://localhost:8888
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/schooldb
+    username: root
+    password: password1
+    driverClassName: com.mysql.cj.jdbc.Driver
+
+server:
+  port: 8093 #port where discovery client is registered
+
+#eureka:
+#  instance:
+#    leaseRenewalIntervalInSeconds: 1
+#    leaseExpirationDurationInSeconds: 2
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka #eureka endpoint
+#    healthcheck:
+#      enabled: true
+#    lease:
+#      duration: 5   
+#      
+#management:
+#  security:
+#    enabled: false
