@@ -31,8 +31,8 @@ public class StudentsServiceImpl {
     
     public StudentEntity updateStudent(StudentEntity newStudent, Long id) {
         return studentRepository.findById(id).map(student -> {
-            StudentEntity.builder().firstName(newStudent.getFirstName()).lastName(newStudent.getLastName())
-                    .emailId(newStudent.getEmailId()).build();
+            StudentEntity.builder().firstName(newStudent.firstName()).lastName(newStudent.lastName())
+                    .email(newStudent.email()).build();
             return studentRepository.save(student);
         }).orElseGet(() -> studentRepository.save(newStudent));
     }

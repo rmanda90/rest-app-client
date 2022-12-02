@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -16,15 +17,16 @@ import javax.validation.constraints.Size;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @Data
+@Accessors(fluent = true)
+@Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class StudentEntity {
 
 	@Id
-	@SequenceGenerator(name = "studentid_sequence", sequenceName = "studentid_sequence", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "studentid_sequence")
-	private Long studentId;
+	@SequenceGenerator(name = "student_id_sequence", sequenceName = "student_id_sequence", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_id_sequence")
+	private Long id;
 
 	@Size(max = 35, message = "First Name should not be Grater than 35 characters")
 	@NotBlank(message = "First Name is Required")
@@ -35,6 +37,12 @@ public class StudentEntity {
 	private String lastName;
 
 	@Column(nullable = false)
-	private String emailId;
+	private String email;
+	
+	@Column
+	private String address;
+	
+	@Column
+	private String phoneNumber;
 
 }
