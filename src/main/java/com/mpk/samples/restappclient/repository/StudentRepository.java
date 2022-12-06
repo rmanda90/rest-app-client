@@ -7,6 +7,6 @@ import org.springframework.validation.annotation.Validated;
 
 @Repository
 @Validated
-public interface StudentRepository extends JpaRepository<StudentEntity, Long> {
+public interface StudentRepository extends JpaRepository<StudentEntity, Integer> {
 	
 }

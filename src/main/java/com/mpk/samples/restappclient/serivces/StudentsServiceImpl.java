@@ -24,12 +24,12 @@ public class StudentsServiceImpl {
         return studentRepository.save(student);
     }
     
-    public Optional<StudentEntity> findByStudentId(Long id) {
+    public Optional<StudentEntity> findByStudentId(Integer id) {
         return studentRepository.findById(id);
     }
 
     
-    public StudentEntity updateStudent(StudentEntity newStudent, Long id) {
+    public StudentEntity updateStudent(StudentEntity newStudent, Integer id) {
         return studentRepository.findById(id).map(student -> {
             StudentEntity.builder().firstName(newStudent.firstName()).lastName(newStudent.lastName())
                     .email(newStudent.email()).build();
@@ -37,7 +37,7 @@ public class StudentsServiceImpl {
         }).orElseGet(() -> studentRepository.save(newStudent));
     }
     
-    public void deleteStudent(Long id) {
+    public void deleteStudent(Integer id) {
         studentRepository.deleteById(id);
     }
 }
