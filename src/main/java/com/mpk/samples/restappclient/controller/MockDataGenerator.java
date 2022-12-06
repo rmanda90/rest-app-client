@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -63,7 +62,7 @@ public class MockDataGenerator {
                                     .departmentName(hasText(department.departmentName()) ? department.departmentName() : "Default")
                     )).collect(Collectors.toList());
         }
-        
+
         if(!instructorList.isEmpty()) {
             instructorList.stream()
                     .map(instructor -> instructorService.postNewInstructor(
@@ -87,15 +86,15 @@ public class MockDataGenerator {
                     )).collect(Collectors.toList());
         }
 
-        
+
         if(!courseList.isEmpty()) {
             List<StudentEntity> finalStudentEntityList = studentEntityList;
             courseList.stream()
                     .map(course -> courseService.postNewCourse(
                             new CourseEntity()
                                     .name(hasText(course.name())? course.name() : "MSC")
-                                    .instructorId(100)
-                                    .duration(1)
+                                    .instructorId(course.instructorId() == 0 ? 10 : course.instructorId())
+                                    .duration(course.duration() == 0 ? 1 : course.duration())
                                     .departmentName(hasText(course.departmentName())? course.departmentName() : "Computer Applications")
 //                                    .studentEntityList(finalStudentEntityList)
                     )).collect(Collectors.toList());
