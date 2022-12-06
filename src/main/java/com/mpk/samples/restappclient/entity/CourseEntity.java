@@ -6,9 +6,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -18,7 +20,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Accessors(fluent = true)
+@Builder(toBuilder = true)
 public class CourseEntity {
     @Id
     @SequenceGenerator(name = "course_id_sequence", sequenceName = "course_id_sequence", allocationSize = 1)
@@ -30,7 +33,7 @@ public class CourseEntity {
     private String name;
 
     @Column
-    @NotBlank(message = "InstructorId is Required in CourseEntity")
+    @NotNull
     private int instructorId;
 
     @Column
@@ -45,6 +48,16 @@ public class CourseEntity {
             nullable=false, insertable = false, updatable = false
     )
     private DepartmentEntity departmentEntity;
+
+    @ManyToOne(
+            cascade = CascadeType.ALL
+    )
+    @JoinColumn(
+            name = "instructorId",
+            referencedColumnName = "id",
+            nullable=false, insertable = false, updatable = false
+    )
+    private InstructorEntity instructorEntity;
     
     
     /*
