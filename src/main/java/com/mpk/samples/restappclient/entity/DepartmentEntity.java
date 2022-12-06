@@ -6,10 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Entity
 @Table(name = "department")
@@ -29,4 +29,11 @@ public class DepartmentEntity {
     @Column
     @NotBlank(message = "Department Name is Required")
     private String departmentName;
+
+    @OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(
+            name = "departmentName", 
+            referencedColumnName = "departmentName"
+    )
+    private List<CourseEntity> courseEntityList;
 }

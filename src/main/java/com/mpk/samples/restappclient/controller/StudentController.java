@@ -1,7 +1,6 @@
 package com.mpk.samples.restappclient.controller;
 
 import com.mpk.samples.restappclient.entity.StudentEntity;
-import com.mpk.samples.restappclient.feign.StubRunnerClient;
 import com.mpk.samples.restappclient.serivces.StudentsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -4,9 +4,7 @@ import com.mpk.samples.restappclient.objects.*;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /*
 * Here we are using eureka-client from eureka service registery 

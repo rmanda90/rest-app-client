@@ -26,7 +26,7 @@ public class StudentEntity {
 	@Id
 	@SequenceGenerator(name = "student_id_sequence", sequenceName = "student_id_sequence", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_id_sequence")
-	private Long id;
+	private int id;
 
 	@Size(max = 35, message = "First Name should not be Grater than 35 characters")
 	@NotBlank(message = "First Name is Required")
@@ -44,5 +44,4 @@ public class StudentEntity {
 	
 	@Column
 	private String phoneNumber;
-
 }

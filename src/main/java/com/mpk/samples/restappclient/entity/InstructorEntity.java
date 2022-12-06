@@ -6,12 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.Accessors;
-import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "instructor")
@@ -40,4 +37,14 @@ public class InstructorEntity {
     
     @Column
     private String phoneNumber;
+
+    @ManyToOne(
+            cascade = CascadeType.ALL
+    )
+    @JoinColumn(
+            name = "departmentName",
+            referencedColumnName = "departmentName",
+            nullable=false, insertable = false, updatable = false
+    )
+    private DepartmentEntity departmentEntity;
 }
