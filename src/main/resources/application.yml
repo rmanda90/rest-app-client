@@ -14,6 +14,11 @@ spring:
     username: root
     password: password1
     driverClassName: com.mysql.cj.jdbc.Driver
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
 server:
   port: 8093 #port where discovery client is registered
@@ -29,3 +34,10 @@ eureka:
       enabled: true
     lease:
       duration: 5   
+      
+spring.cloud.stream:
+  bindings:
+    # Source properties -> It creates an exchange if not available in rabbitmq.
+    student-ingestion-stream:
+      destination: student-ingestion-stream
+      content-type: application/json
