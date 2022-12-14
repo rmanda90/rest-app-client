@@ -1,3 +1,6 @@
+server:
+  port: 8092 #port where discovery client is registered
+
 spring:
   application:
     name: rest-app-client #service name, this will appear in eureka server homepage
@@ -5,35 +8,34 @@ spring:
     active: dev,local
   config:
     import: optional:configserver:http://localhost:8888
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-  datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/schooldb
-    username: root
-    password: password1
-    driverClassName: com.mysql.cj.jdbc.Driver
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
 
-server:
-  port: 8093 #port where discovery client is registered
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka} #http://localhost:8761/eureka #eureka endpoint
-    instance:
-      preferIpAddress: true
-      hostname: localhost
-    healthcheck:
-      enabled: true
-    lease:
-      duration: 5   
+#we are reading from cloud config
+#  jpa:
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: update
+#  datasource:
+#    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/schooldb
+#    username: root
+#    password: password1
+#    driverClassName: com.mysql.cj.jdbc.Driver
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#    username: guest
+#    password: guest
+#
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka} #http://localhost:8761/eureka #eureka endpoint
+#    instance:
+#      preferIpAddress: true
+#      hostname: localhost
+#    healthcheck:
+#      enabled: true
+#    lease:
+#      duration: 5   
       
 spring.cloud.stream:
   bindings:
